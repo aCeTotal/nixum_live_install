@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: my_sdl2_app
+# Project: nixum_install
 # Configurations: 
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__my_sdl2_app_unscanned_
+rule CXX_COMPILER__nixum_install_unscanned_
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}/nix/store/mpm3i0sbqc9svfch6a17179fs64dz2kv-gcc-wrapper-13.3.0/bin/g++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__my_sdl2_app_unscanned_
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__my_sdl2_app_
+rule CXX_EXECUTABLE_LINKER__nixum_install_
   command = $PRE_LINK && /nix/store/mpm3i0sbqc9svfch6a17179fs64dz2kv-gcc-wrapper-13.3.0/bin/g++ $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /nix/store/ih3wsahlr3d787jc4kzqizp6syq6hy29-cmake-3.29.3/bin/cmake --regenerate-during-build -S/home/total/nixum_program -B/home/total/nixum_program/build
+  command = /nix/store/ih3wsahlr3d787jc4kzqizp6syq6hy29-cmake-3.29.3/bin/cmake --regenerate-during-build -S/home/total/nixum_live_install -B/home/total/nixum_live_install/build
   description = Re-running CMake...
   generator = 1
 

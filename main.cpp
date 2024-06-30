@@ -90,7 +90,6 @@ void handleScrolling(SDL_Event& e);
 int getTextHeight(TTF_Font* font, const std::string& text, int wrapLength);
 void updateAuthStatusAnimation(Uint32 currentTime);
 void drawClippedRect(SDL_Renderer* renderer, SDL_Rect& rect);
-void drawTopBar(SDL_Renderer* renderer);
 
 // Funksjoner
 void drawText(SDL_Renderer* renderer, TTF_Font* font, const std::string& text, int x, int y, SDL_Color color, bool bold, int wrapLength) {
@@ -184,12 +183,12 @@ TTF_Font* loadFont(const std::string& fontPath, int fontSize) {
 
 void drawMenu(SDL_Renderer* renderer, TTF_Font* font, int currentPage) {
     const std::vector<std::string> menuItems = { "Select Drive", "Select preset", "Your info", "Install" };
-    int y = HEADER_HEIGHT + 20;
+    int y = HEADER_HEIGHT + 40; // Start litt lavere for jevn avstand
 
     for (int i = 0; i < menuItems.size(); ++i) {
         SDL_Color textColor = (i == currentPage) ? SDL_Color{ 255, 165, 0, 255 } : SDL_Color{ 255, 255, 255, 255 };
         drawText(renderer, font, menuItems[i], MARGIN, y, textColor, false, MENU_WIDTH - 2 * MARGIN);
-        y += 50;
+        y += 60; // Økt avstand mellom knappene
     }
 }
 
@@ -350,12 +349,6 @@ void drawClippedRect(SDL_Renderer* renderer, SDL_Rect& rect) {
     SDL_RenderSetClipRect(renderer, nullptr);
 }
 
-void drawTopBar(SDL_Renderer* renderer) {
-    SDL_Rect topBar = { MENU_WIDTH, 0, WINDOW_WIDTH - MENU_WIDTH, HEADER_HEIGHT };
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderFillRect(renderer, &topBar);
-}
-
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
@@ -448,7 +441,7 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 if (x > MARGIN && x < MENU_WIDTH - MARGIN) {
-                    int index = (y - HEADER_HEIGHT - 20) / LINE_HEIGHT;
+                    int index = (y - (HEADER_HEIGHT + 40)) / 60;
                     if (index >= 0 && index < static_cast<int>(pages.size())) {
                         currentPage = index;
                     }
@@ -541,10 +534,6 @@ int main(int argc, char* argv[]) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        // Draw clipping area for scrollable content
-        SDL_Rect clipRect = { MENU_WIDTH, HEADER_HEIGHT + 1, WINDOW_WIDTH - MENU_WIDTH, WINDOW_HEIGHT - HEADER_HEIGHT - 1 };
-        drawClippedRect(renderer, clipRect);
-
         drawLines(renderer);
         drawMenu(renderer, font, currentPage);
         drawHeader(renderer, font, "NixumOS Installer");
@@ -602,9 +591,6 @@ int main(int argc, char* argv[]) {
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         SDL_RenderFillRect(renderer, &closeButton);
         drawText(renderer, font, "X", WINDOW_WIDTH - 35, 10, { 255, 255, 255, 255 });
-
-        // Draw top bar to overlap scrolled content
-        drawTopBar(renderer);
 
         SDL_RenderPresent(renderer);
     }

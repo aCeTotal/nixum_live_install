@@ -1,4 +1,4 @@
-# Install script for directory: /home/total/nixum_program
+# Install script for directory: /home/total/nixum_live_install
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/total/nixum_program/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/total/nixum_live_install/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
