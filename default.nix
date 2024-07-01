@@ -26,6 +26,7 @@ pkgs.stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp -r $out/nixum_install $out/bin
+    cp -r nixum_install test.ttf $out/bin
+    ./result/bin/nixum_install
         '';
 }
