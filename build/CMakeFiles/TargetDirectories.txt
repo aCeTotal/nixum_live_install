@@ -1,3 +1,0 @@
-/home/total/nixum_live_install/build/CMakeFiles/nixum_install.dir
-/home/total/nixum_live_install/build/CMakeFiles/edit_cache.dir
-/home/total/nixum_live_install/build/CMakeFiles/rebuild_cache.dir
