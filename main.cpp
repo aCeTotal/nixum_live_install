@@ -11,6 +11,8 @@
 #include <memory>
 #include <algorithm>
 #include <cstdlib>
+#include <unistd.h>
+#include <limits.h>
 
 // Vindusstørrelse
 const int WINDOW_WIDTH = 1000;
@@ -179,6 +181,15 @@ TTF_Font* loadFont(const std::string& fontPath, int fontSize) {
     }
 
     return nullptr;
+}
+
+std::string getExecutablePath() {
+    char result[PATH_MAX];
+    ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+    if (count != -1) {
+        return std::string(result, count);
+    }
+    return "";
 }
 
 void drawMenu(SDL_Renderer* renderer, TTF_Font* font, int currentPage) {
@@ -375,10 +386,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Oppdater denne linjen til å bruke riktig sti til fontfilen
-    std::string localFontPath = "test.ttf";
-    std::string derivationFontPath = "/run/current-system/sw/bin/test.ttf";
-    std::string fontPath = std::filesystem::exists(localFontPath) ? localFontPath : derivationFontPath;
+    std::string execPath = getExecutablePath();
+    std::string execDir = std::filesystem::path(execPath).parent_path();
+    std::string fontPath = execDir + "/test.ttf";
 
     TTF_Font* font = loadFont(fontPath, 24);
     if (font == nullptr) {

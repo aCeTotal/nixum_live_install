@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/total/nixum_live_install",
+  "command": "/nix/store/mpm3i0sbqc9svfch6a17179fs64dz2kv-gcc-wrapper-13.3.0/bin/g++ -I/nix/store/hk147ym8x0kw6m8paxl8fmkvskqf6l74-SDL2_image-2.8.2/include/SDL2 -I/nix/store/jr906mcqzn8inys67678qh24kqnfqr1p-SDL2_ttf-2.22.0/include/SDL2 -I/nix/store/rb6yd8h6jrzcd9jr28kf2znz1hy41j9j-SDL2_net-2.2.0-dev/include/SDL2 -I/nix/store/fjbpy2j5ibs1qjpxp7q7s9gsklk7m6xb-SDL2_gfx-1.0.4-dev/include/SDL2 -I/nix/store/nxz6vvx7yw2m7rik1mypri0llmrihrww-SDL2_sound-2.0.1/include/SDL2 -I/nix/store/pg2yqk402dzn5x9kjz99ag2fbprnz5b7-SDL2_mixer-2.8.0-dev/include/SDL2 -isystem /nix/store/0pgnddqmb0jv5bm1rjqp2w1rh83j872a-SDL2-2.30.3-dev/include/SDL2 -std=gnu++17 -o CMakeFiles/nixum_install.dir/main.cpp.o -c /home/total/nixum_live_install/main.cpp",
+  "file": "/home/total/nixum_live_install/main.cpp",
+  "output": "CMakeFiles/nixum_install.dir/main.cpp.o"
+}
+]
