@@ -375,7 +375,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    std::string fontPath = std::filesystem::absolute("test.ttf").string(); // Path to the font file in the build directory
+    // Oppdater denne linjen til å bruke riktig sti til fontfilen
+    std::string localFontPath = "test.ttf";
+    std::string derivationFontPath = "/run/current-system/sw/bin/test.ttf";
+    std::string fontPath = std::filesystem::exists(localFontPath) ? localFontPath : derivationFontPath;
+
     TTF_Font* font = loadFont(fontPath, 24);
     if (font == nullptr) {
         SDL_DestroyRenderer(renderer);
