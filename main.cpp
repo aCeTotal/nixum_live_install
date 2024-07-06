@@ -1,4 +1,3 @@
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
@@ -386,10 +385,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    // Finn den absolutt stien til den kjørbare filen
     std::string execPath = getExecutablePath();
     std::string execDir = std::filesystem::path(execPath).parent_path();
     std::string fontPath = execDir + "/test.ttf";
 
+    // Last inn fonten fra den bestemte stien
     TTF_Font* font = loadFont(fontPath, 24);
     if (font == nullptr) {
         SDL_DestroyRenderer(renderer);
@@ -616,3 +617,4 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
